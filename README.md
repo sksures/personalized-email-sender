@@ -1,5 +1,7 @@
 # personalized-email-sender
 
+Creating a personalized email sender script involves using a programming language like Python along 
+
 The Personalized Email Sender Script automates the process of sending personalized emails to a list of recipients. It enables users to customize email content based on individual preferences and details, fostering more meaningful communication and engagement.
 
 Features
