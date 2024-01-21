@@ -1,0 +1,70 @@
+import smtplib
+
+from email.mime.text import 
+MIMEText
+from email.mime.multipart import
+MIMEMultipart
+
+
+def send_personalized_email(sender_email, sender_password, recipients, subject, message):
+
+    # Set up the SMTP server
+
+    smtp_server = "your_smtp_server"
+
+    smtp_port = 587
+    # Update with your SMTP server port
+
+    server = smtplib.SMTP(smtp_server, smtp_port)
+    
+    server.starttls()
+
+    # Log in to your email account
+    
+    server.login(sender_email, sender_password)
+    
+    
+    for recipient_email in recipients:
+
+        # Create message
+
+        msg = MIMEMultipart()
+
+        msg['From'] = sender_email
+
+        msg['To'] = recipient_email
+
+        msg['Subject'] = subject
+
+
+        # Add personalized message
+
+        body = f"Dear {recipient_email.split('@')[0]},\n\n{message}"
+
+        msg.attach(MIMEText(body, 'plain'))
+
+
+        # Send email
+
+        server.sendmail(sender_email, recipient_email, msg.as_string())
+
+
+    # Quit the server
+    
+       server.quit()
+
+
+# Example usage
+
+sender_email = "your_email@gmail.com"
+
+sender_password = "your_email_password"
+
+recipients = ["recipient1@example.com", "recipient2@example.com"]
+
+subject = "Personalized Greetings"
+
+message = "Hope this email finds you well. Best regards, [Your Name]"
+
+
+send_personalized_email(sender_email, sender_password, recipients, subject, message)
